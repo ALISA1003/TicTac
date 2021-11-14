@@ -8,7 +8,7 @@ public class TicTac {
 
         public TicTac( ) {
             // инициализация game?
-
+            game = new int[SIDE][SIDE];
             resetGame( );
         }
 
@@ -23,7 +23,7 @@ public class TicTac {
                     turn = 1;
 
                 // что-то нужно вернуть?
-                return 0;
+                return currentTurn;
 
             }
             else
@@ -71,23 +71,30 @@ public class TicTac {
         }
 
         public boolean canNotPlay( ) {
-            boolean result = false;
+            boolean result = true;
             for (int row = 0; row < SIDE; row++)
                 for( int col = 0; col < SIDE; col++ )
                     if ( game[row][col] == 0 )
                         result = false;
                     // что-то нужно вернуть?
-            return false;
+
+
+            return result;
 
         }
 
         public boolean isGameOver( ) {
             // логика для gameover??
+            if(canNotPlay())
+                return true;
+            if(whoWon() != 0)
+                return true;
+
             return false;
         }
 
         public void resetGame( ) {
-            // логика для сброса
+            game = new int[SIDE][SIDE];
             turn = 1;
         }
 
